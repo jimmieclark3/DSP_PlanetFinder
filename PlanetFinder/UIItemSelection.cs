@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using PlanetFinder;
 
 namespace PlanetFinderMod
 {
+
     //1:鉄鉱脈 / 1001:鉄鉱石
     //2:銅鉱脈 / 1002:銅鉱石
     //3:シリコン鉱脈 / 1003:シリコン鉱石
@@ -38,7 +40,7 @@ namespace PlanetFinderMod
         public List<UIButton> buttons;
         public List<string> buttonNames;
 
-        public static int[] additionalMaterials = { 1000, 1116, 0, 1120, 1121, 1011 };
+        public static int[] additionalMaterials = { 1000, 1116, 0, 1120, 1121, 1011, 0, Constants.DARK_FOG__ENERGY_SHARD, Constants.DARK_FOG__MATRIX, Constants.DARK_FOG__STAR_CORE };
 
         public HashSet<int> items;
         public int lastSelectedItemId;
@@ -90,7 +92,7 @@ namespace PlanetFinderMod
 
             return result;
         }
-        
+
         public static void SetButtonIcon(UIButton btn, Sprite sprite, string name, int obj)
         {
             Image Img = btn.transform.Find("image")?.GetComponent<Image>();
@@ -152,7 +154,7 @@ namespace PlanetFinderMod
         {
             items = new HashSet<int>();
             rectTrans = transform as RectTransform;
-            
+
             //Text label = Util.CreateText("Vein", 14);
             //Util.NormalizeRectWithTopLeft(label, 0f, 0f, rectTrans);
 
@@ -161,7 +163,7 @@ namespace PlanetFinderMod
             float left = 0f;
             buttons = new List<UIButton>(40);
             buttonNames = new List<string>(40);
-            for (int i = 1; i < 15; i++)
+            for (int i = 1; i < LDB.veins.Length; i++)
             {
                 VeinProto veinProto = LDB.veins.Select(i);
                 ItemProto itemProto = LDB.items.Select(veinProto.MiningItem);
@@ -174,7 +176,7 @@ namespace PlanetFinderMod
                     btn.button.interactable = true;
 
                     SetButtonIcon(btn, veinProto.iconSprite, veinProto.name, veinProto.ID);
-                    
+
                     buttons.Add(btn);
                     buttonNames.Add(veinProto.name);
                     left += 30f;
@@ -202,6 +204,28 @@ namespace PlanetFinderMod
                     left += 30f;
                 }
             }
+
+            //left += 6f; //space
+
+            //ModLogs.Trace($"Enemies count {LDB.enemies.Length}");
+
+
+            //foreach (var proto in LDB.items.dataArray)
+            //{
+            //    if (proto != null && proto.description.ToLower().Contains("dark fog"))
+            //    {
+            //        ModLogs.Trace($"Enemies loading {proto.ID}");
+            //        ModLogs.Trace($"Enemies loaded {proto.description}");
+            //        UIButton btn = CreateSelectButton(this);
+            //        RectTransform rect = Util.NormalizeRectWithTopLeft(btn, left, top, rectTrans);
+            //        btn.button.interactable = true;
+            //        SetButtonIcon(btn, proto.iconSprite, proto.name, proto.ID);
+            //        buttons.Add(btn);
+            //        buttonNames.Add(proto.name);
+            //        left += 30f;
+            //        //break;
+            //    }
+            //}
 
             //次期バージョン
             //left = 0f;

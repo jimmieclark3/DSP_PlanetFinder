@@ -9,15 +9,16 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using static PlanetFinderMod.UIPlanetFinderWindow;
+using PlanetFinder;
 
 namespace PlanetFinderMod
 {
 
-    [BepInPlugin(__GUID__, __NAME__, "1.1.1")]
+    [BepInPlugin(__GUID__, __NAME__, "1.1.2")]
     public class PLFN : BaseUnityPlugin
     {
         public const string __NAME__ = "PlanetFinder";
-        public const string __GUID__ = "com.hetima.dsp." + __NAME__;
+        public const string __GUID__ = "com.jclark.dsp." + __NAME__;
 
         new internal static ManualLogSource Logger;
 
@@ -43,6 +44,10 @@ namespace PlanetFinderMod
         void Awake()
         {
             Logger = base.Logger;
+
+            ModLogs.SetLogger(Logger);
+
+            ModLogs.Trace("PlanetFinder - Started Up");
 
             Harmony harmony = new Harmony(__GUID__);
 
@@ -78,7 +83,7 @@ namespace PlanetFinderMod
 
         public static void Log(string str)
         {
-            Logger.LogInfo(str);
+            ModLogs.Log(str);
         }
 
         public static void UniverseExplorationRequired()

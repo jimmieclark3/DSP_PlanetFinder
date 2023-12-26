@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using PlanetFinder;
+using System.Linq;
 
 namespace PlanetFinderMod
 {
@@ -365,6 +367,14 @@ namespace PlanetFinderMod
                 {
                     return ld.ItemCount(itemId);
                 }
+                if (itemId == Constants.DARK_FOG__ENERGY_SHARD || itemId == Constants.DARK_FOG__MATRIX || itemId == Constants.DARK_FOG__STAR_CORE)
+                {
+                    var elvl = pd.GetPlanetEnemyLevel();
+                    if (elvl != null)
+                    {
+                        return elvl.Value;
+                    }
+                }
             }
             return amount;
         }
@@ -393,6 +403,11 @@ namespace PlanetFinderMod
                         amount += TargetItemAmountSketchForPlanet(item);
                     }
                 }
+                else if (itemId == Constants.DARK_FOG__ENERGY_SHARD || itemId == Constants.DARK_FOG__MATRIX || itemId == Constants.DARK_FOG__STAR_CORE)
+                {
+                    var max = ld.planetList.Max(i => i.planetData.GetPlanetEnemyLevel());
+                    return max ?? 0;
+                }
                 else
                 {
                     return 0;
@@ -418,7 +433,15 @@ namespace PlanetFinderMod
                 if (itemId <= veinCount)
                 {
                     return ld.ItemCountSketch(itemId);
-                } 
+                }
+                if (itemId == Constants.DARK_FOG__ENERGY_SHARD || itemId == Constants.DARK_FOG__MATRIX || itemId == Constants.DARK_FOG__STAR_CORE)
+                {
+                    var elvl = pd.GetPlanetEnemyLevel();
+                    if (elvl != null)
+                    {
+                        return elvl.Value;
+                    }
+                }
             }
             return amount;
         }

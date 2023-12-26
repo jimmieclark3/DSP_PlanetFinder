@@ -7,7 +7,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using System.Threading;
-
+using PlanetFinder;
+using System.Linq;
 
 namespace PlanetFinderMod
 {
@@ -391,7 +392,7 @@ namespace PlanetFinderMod
             {
                 rows = 16f;
             }
-            return new Vector2(640, 174 + 28 * rows);
+            return new Vector2(700, 174 + 28 * rows);
         }
         private void PopulateItem(MonoBehaviour item, int rowIndex)
         {
@@ -769,6 +770,23 @@ namespace PlanetFinderMod
                 {
                     return planetListData.IsContainItem(itemId);
                 }
+                if ((planet.factory?.enemySystem?.bases?.count ?? 0) > 0)
+                {
+                    var elvl = planet.GetPlanetEnemyLevel();
+
+                    if (itemId == Constants.DARK_FOG__ENERGY_SHARD && elvl >= 3)
+                    {
+                        return true;
+                    }
+                    if (itemId == Constants.DARK_FOG__MATRIX && elvl >= 12)
+                    {
+                        return true;
+                    }
+                    if (itemId == Constants.DARK_FOG__STAR_CORE && elvl >= 15)
+                    {
+                        return true;
+                    }
+                }
             }
             return false;
         }
@@ -779,6 +797,7 @@ namespace PlanetFinderMod
             {
                 foreach (int itemId in filterItems)
                 {
+                    if (IsTargetPlanet(planetListData, itemId) == orSearch)
                     if (IsTargetPlanet(planetListData, itemId) == orSearch)
                     {
                         return orSearch;
