@@ -43,6 +43,11 @@ Favorite feature adds/removes the "★" character directly to the planet name. M
 
 ## Release Notes
 
+### v1.1.4
+- Added the last of the secret resources from Dark Fog
+
+### v1.1.3
+- Bug fixes
 
 ### v1.1.2
 - Added Dark Fog search, for farming dark fog resource drops

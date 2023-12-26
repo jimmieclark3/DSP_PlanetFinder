@@ -392,7 +392,7 @@ namespace PlanetFinderMod
             {
                 rows = 16f;
             }
-            return new Vector2(700, 174 + 28 * rows);
+            return new Vector2(793, 174 + 28 * rows);
         }
         private void PopulateItem(MonoBehaviour item, int rowIndex)
         {
@@ -783,6 +783,18 @@ namespace PlanetFinderMod
                         return true;
                     }
                     if (itemId == Constants.DARK_FOG__STAR_CORE && elvl >= 15)
+                    {
+                        return true;
+                    }
+                    if (itemId == Constants.DARK_FOG__2 && elvl >= 18)
+                    {
+                        return true;
+                    }
+                    if (itemId == Constants.DARK_FOG__5 && elvl >= 21)
+                    {
+                        return true;
+                    }
+                    if (itemId == Constants.DARK_FOG__4 && elvl >= 24)
                     {
                         return true;
                     }

@@ -367,7 +367,7 @@ namespace PlanetFinderMod
                 {
                     return ld.ItemCount(itemId);
                 }
-                if (itemId == Constants.DARK_FOG__ENERGY_SHARD || itemId == Constants.DARK_FOG__MATRIX || itemId == Constants.DARK_FOG__STAR_CORE)
+                if (Constants.IsDark(itemId))
                 {
                     var elvl = pd.GetPlanetEnemyLevel();
                     if (elvl != null)
@@ -403,7 +403,7 @@ namespace PlanetFinderMod
                         amount += TargetItemAmountSketchForPlanet(item);
                     }
                 }
-                else if (itemId == Constants.DARK_FOG__ENERGY_SHARD || itemId == Constants.DARK_FOG__MATRIX || itemId == Constants.DARK_FOG__STAR_CORE)
+                else if (Constants.IsDark(itemId))
                 {
                     var max = ld.planetList.Max(i => i.planetData.GetPlanetEnemyLevel());
                     return max ?? 0;
@@ -434,7 +434,7 @@ namespace PlanetFinderMod
                 {
                     return ld.ItemCountSketch(itemId);
                 }
-                if (itemId == Constants.DARK_FOG__ENERGY_SHARD || itemId == Constants.DARK_FOG__MATRIX || itemId == Constants.DARK_FOG__STAR_CORE)
+                if (Constants.IsDark(itemId))
                 {
                     var elvl = pd.GetPlanetEnemyLevel();
                     if (elvl != null)

@@ -40,7 +40,7 @@ namespace PlanetFinderMod
         public List<UIButton> buttons;
         public List<string> buttonNames;
 
-        public static int[] additionalMaterials = { 1000, 1116, 0, 1120, 1121, 1011, 0, Constants.DARK_FOG__ENERGY_SHARD, Constants.DARK_FOG__MATRIX, Constants.DARK_FOG__STAR_CORE };
+        public static int[] additionalMaterials = { 1000, 1116, 0, 1120, 1121, 1011, 0, Constants.DARK_FOG__ENERGY_SHARD, Constants.DARK_FOG__MATRIX, Constants.DARK_FOG__STAR_CORE, Constants.DARK_FOG__2, Constants.DARK_FOG__5, Constants.DARK_FOG__4 };
 
         public HashSet<int> items;
         public int lastSelectedItemId;

@@ -13,7 +13,7 @@ namespace PlanetFinder
             if (pool == null)
                 yield break;
 
-            for (int i = 0;i < pool.count;i++)
+            for (int i = 0; i < pool.count; i++)
             {
                 var item = pool[i];
                 if (item != null)
@@ -57,7 +57,12 @@ namespace PlanetFinder
                 //units.ForEach(i => ModLogs.Trace($"Unit Level {i.level}"));
 
                 if (bases.Count == 0 && units.Count == 0)
-                    return null;
+                {
+                    var hlevel = planet.star?.hivePatternLevel;
+                    ModLogs.Trace($"Hive Level: {hlevel}");
+
+                    return hlevel;
+                }
 
                 if (bases.Count > 0)
                 {

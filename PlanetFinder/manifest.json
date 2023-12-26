@@ -1,6 +1,7 @@
 {
-    "name": "PlanetFinder",
-    "description": "Provides a window to search for planets. ** can search for Dark Fog base levels",
-    "version_number": "1.1.2",
-    "website_url": "https://github.com/jimmieclark3/DSP_PlanetFinder"
+  "name": "PlanetFinder",
+  "description": "Provides a window to search for planets. ** can search for Dark Fog base levels",
+  "version_number": "1.1.4",
+  "dependencies": [],
+  "website_url": "https://github.com/jimmieclark3/DSP_PlanetFinder"
 }
