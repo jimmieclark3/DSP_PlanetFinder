@@ -50,18 +50,27 @@ namespace PlanetFinder
                 var ecnt = planet.factory?.enemySystem?.bases?.count;
                 ModLogs.Trace($"{planet.displayName} - Has {ecnt} enemies");
 
-                var bases = planet.factory?.enemySystem?.bases?.ToEnumerable();
-                var units = planet.factory?.enemySystem?.units?.ToEnumerable();
+                var bases = planet.factory?.enemySystem?.bases?.ToEnumerable().Where(i => i != null).ToList();
+                var units = planet.factory?.enemySystem?.units?.ToEnumerable().ToList();
 
                 //bases.ForEach(i => ModLogs.Trace($"Base Level {i?.evolve.level}"));
                 //units.ForEach(i => ModLogs.Trace($"Unit Level {i.level}"));
 
-                var lvl = bases.Max(i => i?.evolve.level);
+                if (bases.Count == 0 && units.Count == 0)
+                    return null;
 
-                if (lvl != null)
-                    return lvl;
+                if (bases.Count > 0)
+                {
+                    var lvl = bases.Max(i => i?.evolve.level ?? 0);
 
-                return units.Max(i => i.level);
+                    if (lvl > 0)
+                        return lvl;
+                }
+
+                if (units.Count > 0)
+                {
+                    return units.Max(i => i.level);
+                }
             }
 
             return null;
